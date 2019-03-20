@@ -1,0 +1,26 @@
+inherit cmake
+
+NAME="openssl-gost"
+VERSION=1.1.0.3
+RELEASE=1
+CATEGORY="Net"
+SUMMARY="GOST algorithms for OpenSSL 1.1"
+DESCRIPTION="A reference implementation of the Russian GOST crypto algorithms for OpenSSL."
+HOMEPAGE="https://github.com/gost-engine/engine"
+SRC_URI="${HOMEPAGE}/archive/v${VERSION}/engine-v${VERSION}.tar.gz"
+SRC_DIR="engine-${VERSION}"
+PATCH_URI="
+	1.1.0.3-as-needed.patch
+	1.1.0.3-vpath.patch
+"
+
+DOCS="README.gost"
+
+src_install() {
+	local enginesdir=$(pkg-config --variable=enginesdir libcrypto)
+
+	dobin ${B}/bin/gost*sum.exe
+	doman ${S}/gost*sum.1
+	exeinto ${enginesdir}
+	doexe ${B}/bin/gost.dll
+}

@@ -1,0 +1,11 @@
+--- origsrc/engine-1.1.0.3/CMakeLists.txt	2018-08-21 01:56:48.000000000 -0500
++++ src/engine-1.1.0.3/CMakeLists.txt	2019-02-20 08:55:10.150570300 -0600
+@@ -99,7 +99,7 @@ set_target_properties(gost PROPERTIES PO
+ add_library(gost_engine MODULE ${GOST_ENGINE_SOURCE_FILES})
+ set_target_properties(gost_engine PROPERTIES PREFIX "" OUTPUT_NAME "gost")
+ 
+-target_link_libraries(gost_engine crypto gost)
++target_link_libraries(gost_engine gost crypto)
+ 
+ set(GOST_12_SUM_SOURCE_FILES
+         gost12sum.c
